@@ -1,6 +1,7 @@
 
 import "./App.scss";
 import { useEffect } from "react";
+import SlidableWindow from "./components/SlidableWindow/SlidableWindow";
 
 const App = () => {
   useEffect(() => {
@@ -11,9 +12,13 @@ const App = () => {
     });
 
   }, []);
-  
-  return (<div className="App">
-    Hey
+
+  return (
+  <div className="App">
+    <SlidableWindow />
+    <SlidableWindow />
+    <SlidableWindow />
+    <SlidableWindow />
   </div>
 )
 };

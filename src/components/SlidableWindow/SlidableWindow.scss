@@ -1,0 +1,43 @@
+.SlidableWindow {
+    padding-top: 100px;
+    height: 300px;
+    margin: 0;
+
+    > .MuiSlider-root {
+        width: 85px;
+        margin: 0;
+        padding: 0;
+
+        > .MuiSlider-rail {
+            border-radius: 0;
+            background-image: url("../../media/window.png");
+            background-size: cover;
+            opacity: 1;
+        }
+
+        > .MuiSlider-track {
+            background-image: url("../../media/blinds.png");
+            background-size: cover;
+            border-radius: 10px;
+            opacity: 60%;
+            border: none;
+        }
+        > .MuiSlider-thumb {
+            width: 85px;
+            border-radius: 0;
+            height: 5px;
+            background-color: white;
+
+            
+        }
+
+        > .MuiSlider-mark {
+            display: none;
+        }
+
+        .Mui-active {
+            border: none;
+            box-shadow: none;
+          }
+    }
+}

@@ -4,6 +4,9 @@
   background-color: #444;
   height: 100vh;
   background-size: cover;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
 }
 
 .App-logo {
