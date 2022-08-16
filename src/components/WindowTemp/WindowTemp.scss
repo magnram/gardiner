@@ -1,0 +1,46 @@
+.WindowTemp {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    
+    > .Window {
+        position: absolute;
+        width: 100%;
+        background-image: url("../../media/window.svg");
+        background-color: lightblue;
+        border: 4px solid white;
+        background-position: center;
+        box-sizing: border-box;
+        background-size: cover;
+        height: 100%;
+        background-repeat: no-repeat;
+    }
+
+    > .Borders {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+        > div {
+            height: 5px;
+            width: 100%;
+            background-color: white;
+        }
+    }
+    
+
+    > .ActualBlindPosition {
+        background-image: url("../../media/blinds.png");
+        background-size: cover;
+        border-radius: 10px;
+        position: absolute;
+        width: 100%;
+        opacity: 40%;
+        border: none;
+        border-radius: 0;
+    }
+    
+}

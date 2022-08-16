@@ -4,74 +4,45 @@
     position: relative;
     max-width: 350px;
     width: 21vw;
-
-    > .Window {
-        position: absolute;
-        width: 100%;
-        background-image: url("../../media/window.svg");
-        background-color: lightblue;
-        border: 4px solid white;
-        background-position: center;
-        box-sizing: border-box;
-        background-size: cover;
-        height: 100%;
-        background-repeat: no-repeat;
-    }
-    > .ActualBlindPosition {
-        background-image: url("../../media/blinds.png");
-        background-size: cover;
-        border-radius: 10px;
-        position: absolute;
-        width: 100%;
-        opacity: 40%;
-        border: none;
-        border-radius: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        > div {
-            height: 5px;
+    
+    > .WindowTemp {
+        > .MuiSlider-root {
+            top: 0;
+            left: 0;
+            position: absolute;
             width: 100%;
-            background-color: white;
-        }
-    }
-    > .MuiSlider-root {
-        top: 0;
-        left: 0;
-        position: absolute;
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0);
-        margin: 0;
-        padding: 0;
+            background-color: rgba(0, 0, 0, 0);
+            margin: 0;
+            padding: 0;
 
-        > .MuiSlider-rail {
-            border-radius: 0;
-            display: none;
-            background-size: cover;
-        }
+            > .MuiSlider-rail {
+                border-radius: 0;
+                display: none;
+                background-size: cover;
+            }
 
-        > .MuiSlider-track {
-            background-image: url("../../media/blinds.png");
-            background-size: cover;
-            border-radius: 10px;
-            opacity: 40%;
-            border: none;
-        }
-        > .MuiSlider-thumb {
-            width: 100%;
-            border-radius: 0;
-            height: 5px;
-            background-color: white;
-        }
+            > .MuiSlider-track {
+                background-image: url("../../media/blinds.png");
+                background-size: cover;
+                border-radius: 10px;
+                opacity: 40%;
+                border: none;
+            }
+            > .MuiSlider-thumb {
+                width: 100%;
+                border-radius: 0;
+                height: 5px;
+                background-color: white;
+            }
 
-        > .MuiSlider-mark {
-            display: none;
-        }
+            > .MuiSlider-mark {
+                display: none;
+            }
 
-        .Mui-active {
-            border: none;
-            box-shadow: none;
-          }
+            .Mui-active {
+                border: none;
+                box-shadow: none;
+            }
+        }
     }
 }

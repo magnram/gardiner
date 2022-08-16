@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Slider } from '@mui/material';import "./SlidableWindow.scss"
+import WindowTemp from "../WindowTemp/WindowTemp";
 
 interface Props {
     id: number,
@@ -42,21 +43,18 @@ const SlidableWindow = ({pos1, pos1Destination, pos2, pos2Destination}: Props) =
     };
 
     return (
-        <div className="SlidableWindow">
-            <div className="Window"></div>
-            <div className="ActualBlindPosition" style={{top: `${100-actual1}%`, height: `${(actual1 - actual2).toString()}%`}}>
-                <div/>
-                <div/> 
-            </div>
-            <Slider
-                orientation="vertical"
-                defaultValue={[pos1, pos2]}
-                valueLabelDisplay="auto"
-                max={100}
-                min={0}
-                value={value}
-                onChange={handleChange}
-            />
+        <div className="SlidableWindow"> 
+            <WindowTemp pos1={actual1} pos2={actual2}>
+                    <Slider
+                        orientation="vertical"
+                        defaultValue={[pos1, pos2]}
+                        valueLabelDisplay="off"
+                        max={100}
+                        min={0}
+                        value={value}
+                        onChange={handleChange}
+                    />
+            </WindowTemp>
         </div>
     );
 };

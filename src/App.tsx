@@ -1,7 +1,9 @@
 
-import "./App.scss";
 import { useEffect } from "react";
 import WindowWrapper from "./components/WindowWrapper/WindowWrapper";
+import WindowTemp from "./components/WindowTemp/WindowTemp";
+import "./App.scss";
+import Presets from "./components/Presets/Presets";
 
 const App = () => {
   useEffect(() => {
@@ -16,6 +18,7 @@ const App = () => {
   return (
   <div className="App">
     <WindowWrapper />
+    <Presets />
   </div>
 )
 };
