@@ -13,7 +13,7 @@ interface WindowData {
 const WindowWrapper = () => {
     const [data, setData] = useState<WindowData[]>();
     useEffect(() => {
-        fetch("http://localhost:8080/getAll")
+        fetch("https://gardiner-backend.herokuapp.com/getAll")
           .then((response) => response.json())
           .then((data) => {
               setData(data);
