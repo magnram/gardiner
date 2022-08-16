@@ -43,6 +43,7 @@ const SlidableWindow = ({pos1, pos1Destination, pos2, pos2Destination}: Props) =
 
     return (
         <div className="SlidableWindow">
+            <div className="Window"></div>
             <div className="ActualBlindPosition" style={{top: `${100-actual1}%`, height: `${(actual1 - actual2).toString()}%`}}>
                 <div/>
                 <div/> 
@@ -56,7 +57,6 @@ const SlidableWindow = ({pos1, pos1Destination, pos2, pos2Destination}: Props) =
                 value={value}
                 onChange={handleChange}
             />
-
         </div>
     );
 };
