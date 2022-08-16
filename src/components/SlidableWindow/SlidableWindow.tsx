@@ -22,18 +22,18 @@ const SlidableWindow = ({pos1, pos1Destination, pos2, pos2Destination}: Props) =
         const val2 = Math.min(value[0], value[1]);
 
         if (val1 < actual1) setTimeout(() => {
-            if (val1 < actual1) setActual1(actual1-1);
-        }, 100);
+            if (val1 < actual1) setActual1(actual1-0.1);
+        }, 10);
         if (val1 > actual1) setTimeout(() => {
-            if (val1 > actual1) setActual1(actual1+1);
-        }, 100);
+            if (val1 > actual1) setActual1(actual1+0.1);
+        }, 10);
 
         if (val2 < actual2) setTimeout(() => {
-            if (val2 < actual2) setActual2(actual2-1);
-        }, 100);
+            if (val2 < actual2) setActual2(actual2-0.1);
+        }, 10);
         if (val2 > actual2) setTimeout(() => {
-            if (val2 > actual2) setActual2(actual2+1);
-        }, 100);
+            if (val2 > actual2) setActual2(actual2+0.1);
+        }, 10);
 
     }, [value, actual1, actual2]);
 
