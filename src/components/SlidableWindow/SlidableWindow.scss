@@ -1,8 +1,11 @@
 .SlidableWindow {
-    height: 300px;
+    height: 45vh;
     margin: 0;
     background-image: url("../../media/window.png");
+    background-size: cover;
     position: relative;
+    max-width: 350px;
+    width: 21vw;
 
     > .ActualBlindPosition {
         background-image: url("../../media/blinds.png");
@@ -24,7 +27,7 @@
         }
     }
     > .MuiSlider-root {
-        width: 85px;
+        width: 100%;
         background-color: rgba(0, 0, 0, 0);
         margin: 0;
         padding: 0;
@@ -43,12 +46,10 @@
             border: none;
         }
         > .MuiSlider-thumb {
-            width: 85px;
+            width: 100%;
             border-radius: 0;
             height: 5px;
             background-color: white;
-
-            
         }
 
         > .MuiSlider-mark {
