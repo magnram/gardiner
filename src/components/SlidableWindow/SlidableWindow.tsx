@@ -11,19 +11,52 @@ interface Props {
 }
 
 const SlidableWindow = ({pos1, pos1Destination, pos2, pos2Destination}: Props) => {
-    const valuetext = (value: number) => `${value}%`;
-    const marks = [{value: pos1}, {value: pos2} ];
+    const [value, setValue] = useState([pos1, pos2]);
+    const [actual1, setActual1] = useState(pos1);
+    const [actual2, setActual2] = useState(pos2);
+
+    
+    // console.log(value, "|", actual1, ",", actual2)
+    useEffect(() => {
+        const val1 = Math.max(value[0], value[1]);
+        const val2 = Math.min(value[0], value[1]);
+
+        if (val1 < actual1) setTimeout(() => {
+            if (val1 < actual1) setActual1(actual1-1);
+        }, 100);
+        if (val1 > actual1) setTimeout(() => {
+            if (val1 > actual1) setActual1(actual1+1);
+        }, 100);
+
+        if (val2 < actual2) setTimeout(() => {
+            if (val2 < actual2) setActual2(actual2-1);
+        }, 100);
+        if (val2 > actual2) setTimeout(() => {
+            if (val2 > actual2) setActual2(actual2+1);
+        }, 100);
+
+    }, [value, actual1, actual2]);
+
+    const handleChange = (event: Event, newValue: number | number[]) => {
+        setValue(newValue as number[]);
+    };
 
     return (
         <div className="SlidableWindow">
+            <div className="ActualBlindPosition" style={{top: `${100-actual1}%`, height: `${(actual1 - actual2).toString()}%`}}>
+                <div/>
+                <div/> 
+            </div>
             <Slider
-                getAriaLabel={() => 'Temperature'}
                 orientation="vertical"
-                getAriaValueText={valuetext}
                 defaultValue={[pos1, pos2]}
                 valueLabelDisplay="auto"
-                marks={marks}
+                max={100}
+                min={0}
+                value={value}
+                onChange={handleChange}
             />
+
         </div>
     );
 };
