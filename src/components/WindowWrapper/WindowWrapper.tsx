@@ -14,7 +14,6 @@ interface WindowData {
 
 const WindowWrapper = () => {
     const {windowState} = useWindowState();
-    console.log(process.env)
 
     const [data, setData] = useState<WindowData[]>();
     useEffect(() => {
