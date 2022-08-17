@@ -21,8 +21,11 @@ const WindowWrapper = () => {
       }, []);
 
     return (
-        <div className="WindowWrapper">
-            {data ? data.map((a, idx) => <SlidableWindow {...a} key={idx} />) : null}
+        <div className="Windows">
+            <div className="WindowWrapper">
+                {data ? data.map((a, idx) => <SlidableWindow {...a} key={idx} />) : null}
+            </div>
+            <p> Dra i gardinene for å justere dem</p>
         </div>
     );
 };
