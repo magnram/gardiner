@@ -32,7 +32,6 @@ const SlidableWindow = ({id, pos1, pos1Destination, pos2, pos2Destination}: Prop
     useEffect(() => {   
         const val1 = Math.max(val[0], val[1]);
         const val2 = Math.min(val[0], val[1]);
-        if(actual1 % 1 == 0 && actual2 % 1 == 0 && id == 0) console.log(val1, actual1, "|", val2, actual2, "|", pos1Destination, pos2Destination)
 
         if (val1 < actual1) setTimeout(() => {
             if (val1 < actual1) setActual1(Math.round((actual1-0.1)*10) / 10);
@@ -49,8 +48,6 @@ const SlidableWindow = ({id, pos1, pos1Destination, pos2, pos2Destination}: Prop
     }, [windowState, actual1, actual2]);
 
     const updateOne = async (window: WindowState) => {
-        console.log("update one")
-        console.log(window)
         fetch(`${getBaseUrl()}/updateOne`, {
             method: "POST",
             body: JSON.stringify({
