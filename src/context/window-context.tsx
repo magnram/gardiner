@@ -6,48 +6,60 @@ export interface WindowState {
 }
 
 interface WindowsState { 
-    window1: WindowState
-    window2: WindowState
-    window3: WindowState
-    window4: WindowState
+    0: WindowState
+    1: WindowState
+    2: WindowState
+    3: WindowState
 }
 
 const initialState: WindowsState = {
-    window1: {
+    0: {
         pos1Destination: null,
         pos2Destination: null
     },
-    window2: {
+    1: {
         pos1Destination: null,
         pos2Destination: null
     },
-    window3: {
+    2: {
         pos1Destination: null,
         pos2Destination: null
     },
-    window4: {
+    3: {
         pos1Destination: null,
         pos2Destination: null
     }
 };
 
-export const WindowContext = createContext({} as { windowState: WindowsState, dispatchWindow: Dispatch<SetWindowAction>});
+export const WindowContext = createContext({} as { windowState: WindowsState, dispatchWindow: Dispatch<WindowActions>});
 
-export type SetWindowAction = {
-    payload: WindowState
-    type: "setWindowState"
+export type SetWindowsAction = {
+  payload: {window: WindowState, number: number}
+  type: "setWindowsState"
 }
 
-const windowReducer = (state: WindowsState, action: SetWindowAction): WindowsState => {
+export type SetWindowAction = {
+  payload: {window: WindowState, number: number}
+  type: "setWindowState"
+}
+
+export type WindowActions = SetWindowsAction | SetWindowAction;
+
+const windowReducer = (state: WindowsState, action: WindowActions): WindowsState => {
   switch (action.type) {
     case "setWindowState":
         return {
           ...state, 
-          window1: action.payload,
-          window2: action.payload,
-          window3: action.payload,
-          window4: action.payload
+          0: action.payload.window,
+          1: action.payload.window,
+          2: action.payload.window,
+          3: action.payload.window
         }
+    case "setWindowsState":
+    return {
+      ...state, 
+      [action.payload.number]: action.payload.window
+    }
     default:
       throw new Error();
   }

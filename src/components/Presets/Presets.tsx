@@ -7,7 +7,7 @@ const Presets = () => {
     const {dispatchWindow} = useWindowState();
 
     const handleClick = (number: number, window: WindowState) => {
-        dispatchWindow({type: "setWindowState", payload: window });
+        dispatchWindow({type: "setWindowState", payload: {window, number: -1} });
     }
 
     return (

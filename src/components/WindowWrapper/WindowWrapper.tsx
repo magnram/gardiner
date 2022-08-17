@@ -13,7 +13,7 @@ interface WindowData {
 
 const WindowWrapper = () => {
     const {windowState} = useWindowState();
-    
+
     const [data, setData] = useState<WindowData[]>();
     useEffect(() => {
         fetch("https://gardiner-backend.herokuapp.com/getAll")
@@ -23,11 +23,13 @@ const WindowWrapper = () => {
           });
       }, []);
 
+
     return (
         <div className="Windows">
             <div className="WindowWrapper">
                 {data ? data.map((a, idx) => <SlidableWindow 
                     {...a} 
+                    id={idx}
                     pos1Destination={Object.values(windowState)[idx].pos1Destination || a.pos1Destination} 
                     pos2Destination={Object.values(windowState)[idx].pos2Destination || a.pos2Destination} 
                     key={idx} 

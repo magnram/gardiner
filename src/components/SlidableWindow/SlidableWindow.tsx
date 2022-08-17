@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Slider } from '@mui/material';import "./SlidableWindow.scss"
 import WindowTemp from "../WindowTemp/WindowTemp";
+import { useWindowState } from "../../context/window-context";
 
 interface Props {
     id: number,
@@ -11,12 +12,17 @@ interface Props {
     key: any
 }
 
-const SlidableWindow = ({pos1, pos1Destination, pos2, pos2Destination}: Props) => {
-    const [value, setValue] = useState([pos1Destination, pos2Destination]);
+const SlidableWindow = ({id, pos1, pos1Destination, pos2, pos2Destination}: Props) => {
+    const {windowState, dispatchWindow} = useWindowState();
     const [actual1, setActual1] = useState(pos1);
     const [actual2, setActual2] = useState(pos2);
     
+    const value: number[] = Object.values(Object.values(windowState)[id])
     useEffect(() => {
+        dispatchWindow({type: "setWindowState", payload: {window: {pos1Destination, pos2Destination}, number: id} });
+    }, [])
+    useEffect(() => {
+        
         const val1 = Math.max(value[0], value[1]);
         const val2 = Math.min(value[0], value[1]);
 
@@ -36,12 +42,15 @@ const SlidableWindow = ({pos1, pos1Destination, pos2, pos2Destination}: Props) =
 
     }, [value, actual1, actual2]);
 
-    useEffect(() => {
-        setValue([pos1Destination, pos2Destination]);
-    }, [pos1Destination, pos2Destination])
+    // useEffect(() => {
+    //     if (value[0] != pos1Destination || value[1] != pos2Destination) setValue([pos1Destination, pos2Destination]);
+    // }, [pos1Destination, pos2Destination, value])
 
     const handleChange = (event: Event, newValue: number | number[]) => {
-        setValue(newValue as number[]);
+        const num = newValue as number[];
+        const window = { pos1Destination: num[0], pos2Destination: num[1]};
+
+        dispatchWindow({type: "setWindowsState", payload: {window, number: id} });
     };
 
     return (
