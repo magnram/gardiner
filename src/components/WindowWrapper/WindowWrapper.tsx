@@ -13,8 +13,7 @@ interface WindowData {
 
 const WindowWrapper = () => {
     const {windowState} = useWindowState();
-    console.log(windowState)
-
+    
     const [data, setData] = useState<WindowData[]>();
     useEffect(() => {
         fetch("https://gardiner-backend.herokuapp.com/getAll")

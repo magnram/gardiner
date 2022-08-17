@@ -15,10 +15,7 @@ const SlidableWindow = ({pos1, pos1Destination, pos2, pos2Destination}: Props) =
     const [value, setValue] = useState([pos1Destination, pos2Destination]);
     const [actual1, setActual1] = useState(pos1);
     const [actual2, setActual2] = useState(pos2);
-
-    console.log(pos2Destination)
     
-    // console.log(value, "|", actual1, ",", actual2)
     useEffect(() => {
         const val1 = Math.max(value[0], value[1]);
         const val2 = Math.min(value[0], value[1]);
