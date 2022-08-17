@@ -12,10 +12,11 @@ interface Props {
 }
 
 const SlidableWindow = ({pos1, pos1Destination, pos2, pos2Destination}: Props) => {
-    const [value, setValue] = useState([pos1, pos2]);
+    const [value, setValue] = useState([pos1Destination, pos2Destination]);
     const [actual1, setActual1] = useState(pos1);
     const [actual2, setActual2] = useState(pos2);
 
+    console.log(pos2Destination)
     
     // console.log(value, "|", actual1, ",", actual2)
     useEffect(() => {
@@ -37,6 +38,10 @@ const SlidableWindow = ({pos1, pos1Destination, pos2, pos2Destination}: Props) =
         }, 10);
 
     }, [value, actual1, actual2]);
+
+    useEffect(() => {
+        setValue([pos1Destination, pos2Destination]);
+    }, [pos1Destination, pos2Destination])
 
     const handleChange = (event: Event, newValue: number | number[]) => {
         setValue(newValue as number[]);

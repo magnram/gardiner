@@ -4,6 +4,7 @@ import WindowWrapper from "./components/WindowWrapper/WindowWrapper";
 import WindowTemp from "./components/WindowTemp/WindowTemp";
 import "./App.scss";
 import Presets from "./components/Presets/Presets";
+import { WindowContextProvider } from "./context/window-context";
 
 const App = () => {
   useEffect(() => {
@@ -17,8 +18,10 @@ const App = () => {
 
   return (
   <div className="App">
-    <WindowWrapper />
-    <Presets />
+    <WindowContextProvider>
+      <WindowWrapper />
+      <Presets />
+    </WindowContextProvider>
   </div>
 )
 };
