@@ -11,3 +11,17 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+export const getBaseUrl = () => {
+  let url;
+  switch(process.env.NODE_ENV) {
+    case 'production':
+      url = 'https://gardiner-backend.herokuapp.com';
+      break;
+    case 'development':
+    default:
+      url = 'http://localhost:8080';
+  }
+
+  return url;
+}

@@ -1,4 +1,5 @@
 
+import { getBaseUrl } from "../..";
 import { useWindowState, WindowState } from "../../context/window-context";
 import WindowTemp from "../WindowTemp/WindowTemp";
 import "./Presets.scss";
@@ -8,7 +9,7 @@ const Presets = () => {
 
     const updateAll = async (window: WindowState) => {
         console.log("update all")
-        fetch("http://localhost:8080/updateAll", {
+        fetch(`${getBaseUrl()}/updateAll`, {
         method: "POST",
         body: JSON.stringify([{
             id: 0,

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { getBaseUrl } from "../..";
 import { useWindowState, WindowState } from "../../context/window-context";
 import SlidableWindow from "../SlidableWindow/SlidableWindow";
 import "./WindowWrapper.scss"
@@ -13,10 +14,11 @@ interface WindowData {
 
 const WindowWrapper = () => {
     const {windowState} = useWindowState();
+    console.log(process.env)
 
     const [data, setData] = useState<WindowData[]>();
     useEffect(() => {
-        fetch("http://localhost:8080/getAll")
+        fetch(`${getBaseUrl()}/getAll`)
           .then((response) => response.json())
           .then((data) => {
                 setData(data);

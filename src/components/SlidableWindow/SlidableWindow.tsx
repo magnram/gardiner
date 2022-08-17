@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Slider } from '@mui/material';import "./SlidableWindow.scss"
 import WindowTemp from "../WindowTemp/WindowTemp";
 import { useWindowState, WindowState } from "../../context/window-context";
+import { getBaseUrl } from "../..";
 
 interface Props {
     id: number,
@@ -31,19 +32,18 @@ const SlidableWindow = ({id, pos1, pos1Destination, pos2, pos2Destination}: Prop
     useEffect(() => {   
         const val1 = Math.max(val[0], val[1]);
         const val2 = Math.min(val[0], val[1]);
-        // if(actual1 % 1 == 0 && actual2 % 1 == 0 && id == 0) console.log(val1, actual1, "|", val2, actual2, "|", pos1Destination, pos2Destination)
+        if(actual1 % 1 == 0 && actual2 % 1 == 0 && id == 0) console.log(val1, actual1, "|", val2, actual2, "|", pos1Destination, pos2Destination)
 
         if (val1 < actual1) setTimeout(() => {
             if (val1 < actual1) setActual1(Math.round((actual1-0.1)*10) / 10);
         }, 10)
-        else if (val1 > actual1) setTimeout(() => {
+        if (val1 > actual1) setTimeout(() => {
             if (val1 > actual1) setActual1(Math.round((actual1+0.1)*10) / 10);
         }, 10)
-
-        else if (val2 < actual2) setTimeout(() => {
+        if (val2 < actual2) setTimeout(() => {
             if (val2 < actual2) setActual2(Math.round((actual2-0.1)*10) / 10);
         }, 10)
-        else if (val2 > actual2) setTimeout(() => {
+        if (val2 > actual2) setTimeout(() => {
             if (val2 > actual2) setActual2(Math.round((actual2+0.1)*10) / 10);
         }, 10)
     }, [windowState, actual1, actual2]);
@@ -51,7 +51,7 @@ const SlidableWindow = ({id, pos1, pos1Destination, pos2, pos2Destination}: Prop
     const updateOne = async (window: WindowState) => {
         console.log("update one")
         console.log(window)
-        fetch("http://localhost:8080/updateOne", {
+        fetch(`${getBaseUrl()}/updateOne`, {
             method: "POST",
             body: JSON.stringify({
                 id,
