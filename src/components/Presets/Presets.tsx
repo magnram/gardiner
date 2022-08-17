@@ -6,8 +6,38 @@ import "./Presets.scss";
 const Presets = () => {
     const {dispatchWindow} = useWindowState();
 
+    const updateAll = async (window: WindowState) => {
+        console.log("update all")
+        fetch("http://localhost:8080/updateAll", {
+        method: "POST",
+        body: JSON.stringify([{
+            id: 0,
+            pos1Destination: window.pos1Destination,
+            pos2Destination: window.pos2Destination
+        },
+        {
+            id: 1,
+            pos1Destination: window.pos1Destination,
+            pos2Destination: window.pos2Destination
+        },
+        {
+            id: 2,
+            pos1Destination: window.pos1Destination,
+            pos2Destination: window.pos2Destination
+        },
+        {
+            id: 3,
+            pos1Destination: window.pos1Destination,
+            pos2Destination: window.pos2Destination
+        }
+        ])
+        }).then((response) => response.json())
+          .then((data) => {
+                dispatchWindow({type: "setWindowsState", payload: {window, number: -1} });
+        });
+    }
     const handleClick = (number: number, window: WindowState) => {
-        dispatchWindow({type: "setWindowState", payload: {window, number: -1} });
+        updateAll(window);
     }
 
     return (

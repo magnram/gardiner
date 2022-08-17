@@ -16,24 +16,17 @@ const WindowWrapper = () => {
 
     const [data, setData] = useState<WindowData[]>();
     useEffect(() => {
-        fetch("https://gardiner-backend.herokuapp.com/getAll")
+        fetch("http://localhost:8080/getAll")
           .then((response) => response.json())
           .then((data) => {
                 setData(data);
           });
-      }, []);
-
+    }, []);
 
     return (
         <div className="Windows">
             <div className="WindowWrapper">
-                {data ? data.map((a, idx) => <SlidableWindow 
-                    {...a} 
-                    id={idx}
-                    pos1Destination={Object.values(windowState)[idx].pos1Destination || a.pos1Destination} 
-                    pos2Destination={Object.values(windowState)[idx].pos2Destination || a.pos2Destination} 
-                    key={idx} 
-                />) : null}
+                {data ? data.map(a => <SlidableWindow {...a} key={a.id} />) : null}
             </div>
             <p> Dra i gardinene for å justere dem</p>
         </div>

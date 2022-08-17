@@ -47,7 +47,7 @@ export type WindowActions = SetWindowsAction | SetWindowAction;
 
 const windowReducer = (state: WindowsState, action: WindowActions): WindowsState => {
   switch (action.type) {
-    case "setWindowState":
+    case "setWindowsState":
         return {
           ...state, 
           0: action.payload.window,
@@ -55,7 +55,7 @@ const windowReducer = (state: WindowsState, action: WindowActions): WindowsState
           2: action.payload.window,
           3: action.payload.window
         }
-    case "setWindowsState":
+    case "setWindowState":
     return {
       ...state, 
       [action.payload.number]: action.payload.window
