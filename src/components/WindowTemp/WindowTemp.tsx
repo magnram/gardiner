@@ -13,7 +13,7 @@ const WindowTemp = ({ pos1, pos2, children, opacity }: Props) => {
             <div className="Window"></div>
             <div className="ActualBlindPosition" style={{
                 top: `${100-pos1}%`, height: `${(pos1 - pos2).toString()}%`,
-                background: `${opacity}%`
+                opacity: `${opacity ? opacity : 30}%`
                 }}>
             </div>
             <div className="Borders" style={{top: `${100-pos1}%`, height: `${(pos1 - pos2).toString()}%`}}>

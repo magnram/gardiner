@@ -9,6 +9,7 @@
         background-image: url("../../media/window.svg");
         background-color: lightblue;
         border: 4px solid white;
+        overflow: hidden;
         background-position: center;
         box-sizing: border-box;
         background-size: cover;
@@ -38,7 +39,6 @@
         border-radius: 10px;
         position: absolute;
         width: 100%;
-        opacity: 40%;
         border: none;
         border-radius: 0;
     }

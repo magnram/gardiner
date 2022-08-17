@@ -1,7 +1,29 @@
 .Presets {
-    width: 92vw;
-    margin: 7vh 4vw;
-    height: 100px;
     display: flex;
-    column-gap: 2vw;
+    flex-direction: column;
+    align-items: center;
+    margin: 5vh 4vw;
+    height: 19vh;
+    justify-content: space-between;
+
+    > .WindowWrapper {
+        width: 92vw;
+        height: 15vh;
+
+        > .WindowTemp {
+            max-width: 350px;
+            width: 21vw;
+
+            > .Window {
+                background-image: url("../../media/small_window.svg");
+                background-size: cover;
+            }
+        }
+    }
+
+    > .GuideText {
+        margin: 0;
+        color: white; 
+        font-weight: 600;
+    }
 }
