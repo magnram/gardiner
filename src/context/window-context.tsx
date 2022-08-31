@@ -6,40 +6,21 @@ export interface WindowState {
 }
 
 interface WindowsState { 
-    0: WindowState
-    1: WindowState
-    2: WindowState
-    3: WindowState
+    [id: string]: WindowState
+
 }
 
-const initialState: WindowsState = {
-    0: {
-        pos1Destination: null,
-        pos2Destination: null
-    },
-    1: {
-        pos1Destination: null,
-        pos2Destination: null
-    },
-    2: {
-        pos1Destination: null,
-        pos2Destination: null
-    },
-    3: {
-        pos1Destination: null,
-        pos2Destination: null
-    }
-};
+const initialState: WindowsState = {}
 
 export const WindowContext = createContext({} as { windowState: WindowsState, dispatchWindow: Dispatch<WindowActions>});
 
 export type SetWindowsAction = {
-  payload: {window: WindowState, number: number}
+  payload: {window: WindowState}
   type: "setWindowsState"
 }
 
 export type SetWindowAction = {
-  payload: {window: WindowState, number: number}
+  payload: {window: WindowState, id: string}
   type: "setWindowState"
 }
 
@@ -48,17 +29,15 @@ export type WindowActions = SetWindowsAction | SetWindowAction;
 const windowReducer = (state: WindowsState, action: WindowActions): WindowsState => {
   switch (action.type) {
     case "setWindowsState":
-        return {
-          ...state, 
-          0: action.payload.window,
-          1: action.payload.window,
-          2: action.payload.window,
-          3: action.payload.window
-        }
+      const newStates = Object.fromEntries(Object.keys(state).map(it => [it, action.payload.window]))
+      return {
+        ...state, 
+        ...newStates
+      }
     case "setWindowState":
     return {
       ...state, 
-      [action.payload.number]: action.payload.window
+      [action.payload.id]: action.payload.window
     }
     default:
       throw new Error();

@@ -5,12 +5,11 @@ import { useWindowState, WindowState } from "../../context/window-context";
 import { getBaseUrl } from "../..";
 
 interface Props {
-    id: number,
+    id: string,
     pos1: number, 
     pos1Destination: number, 
     pos2: number, 
-    pos2Destination: number,
-    key: any
+    pos2Destination: number
 }
 
 const SlidableWindow = ({id, pos1, pos1Destination, pos2, pos2Destination}: Props) => {
@@ -19,17 +18,18 @@ const SlidableWindow = ({id, pos1, pos1Destination, pos2, pos2Destination}: Prop
     const [actual1, setActual1] = useState(pos1);
     const [actual2, setActual2] = useState(pos2);
     
-    const val: number[] = Object.values(Object.values(windowState)[id]);
-
     // This useEffect updates the initial values of the global state to match the backend
     useEffect(() => {
-        dispatchWindow({type: "setWindowState", payload: {window: {pos1Destination, pos2Destination}, number: id} });
+        dispatchWindow({type: "setWindowState", payload: {window: {pos1Destination, pos2Destination}, id} });
     }, [])
 
+    const val: number[] = Object.keys(windowState).length ? Object.values(windowState[id]) : []
+    
     useEffect(() => setValue(val), [windowState])
 
     // This useEffect updates `actual1` and `actual1`, should simulate movement in real life
     useEffect(() => {   
+        
         const val1 = Math.max(val[0], val[1]);
         const val2 = Math.min(val[0], val[1]);
 
@@ -56,7 +56,7 @@ const SlidableWindow = ({id, pos1, pos1Destination, pos2, pos2Destination}: Prop
                 pos2Destination: window.pos2Destination
             })
         }).then((response) => response.json())
-          .then((data) => { dispatchWindow({type: "setWindowState", payload: {window, number: id} })
+          .then((data) => { dispatchWindow({type: "setWindowState", payload: {window, id} })
         })
     }
 
