@@ -14,7 +14,7 @@
             max-width: 350px;
             width: 21vw;
 
-            > .Window {
+            > .Window > .frameLayer {
                 background-image: url("../../media/small_window.svg");
                 background-size: cover;
             }

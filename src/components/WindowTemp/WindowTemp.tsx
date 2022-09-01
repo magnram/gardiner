@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
+import Window from "../Window/Window";
 import "./WindowTemp.scss"
 
 interface Props {
     pos1: number,
     pos2: number,
+    weather: boolean,
     onClick?: () => void,
     children?: JSX.Element,
     opacity?: number
 }
-const WindowTemp = ({ pos1, pos2, onClick, children, opacity }: Props) => {
+const WindowTemp = ({ pos1, pos2, weather, onClick, children, opacity }: Props) => {
     return (
         <div className="WindowTemp" onClick={onClick}>
-            <div className="Window"></div>
+            <Window weather={weather}/>
             <div className="ActualBlindPosition" style={{
                 top: `${100-pos1}%`, height: `${(pos1 - pos2).toString()}%`,
                 opacity: `${opacity ? opacity : 30}%`
@@ -26,3 +28,7 @@ const WindowTemp = ({ pos1, pos2, onClick, children, opacity }: Props) => {
 };
 
 export default WindowTemp;
+
+WindowTemp.defaultProps = {
+    weather: false
+};

@@ -1,0 +1,28 @@
+.Window {
+    position: absolute;
+    width: 100%;
+
+    border: 4px solid white;
+    overflow: hidden;
+
+    box-sizing: border-box;
+    height: 100%;
+
+    > .weatherLayer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: lightblue;
+    }
+
+    > .frameLayer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: url("../../media/window.svg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+    }
+}

@@ -2,20 +2,7 @@
     position: relative;
     height: 100%;
     width: 100%;
-    
-    > .Window {
-        position: absolute;
-        width: 100%;
-        background-image: url("../../media/window.svg");
-        background-color: lightblue;
-        border: 4px solid white;
-        overflow: hidden;
-        background-position: center;
-        box-sizing: border-box;
-        background-size: cover;
-        height: 100%;
-        background-repeat: no-repeat;
-    }
+
 
     > .Borders {
         display: flex;

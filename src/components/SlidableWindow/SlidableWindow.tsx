@@ -70,7 +70,7 @@ const SlidableWindow = ({id, pos1, pos1Destination, pos2, pos2Destination}: Prop
 
     return (
         <div className="SlidableWindow"> 
-            <WindowTemp pos1={actual1} pos2={actual2}>
+            <WindowTemp pos1={actual1} pos2={actual2} weather>
                     <Slider
                         orientation="vertical"
                         defaultValue={[pos1, pos2]}
