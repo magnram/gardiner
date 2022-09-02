@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
 import { getBaseUrl } from "../..";
 import useSWR from "swr";
 import SlidableWindow from "../SlidableWindow/SlidableWindow";
-import "./WindowWrapper.scss"
+import "./SWindowWrapper.scss"
 import { basicFetcher } from "../../utils/fetchers";
 
 interface WindowInputData {
@@ -13,7 +12,7 @@ interface WindowInputData {
     pos2Destination: number
 }
 
-const WindowWrapper = () => {
+const SWindowWrapper = () => {
 
     const { data, error } = useSWR<WindowInputData[]>(
     `${getBaseUrl()}/getAll`,
@@ -26,12 +25,17 @@ const WindowWrapper = () => {
 
     return (
         <div className="Windows">
-            <div className="WindowWrapper">
-                {data.map((a, idx) => <SlidableWindow {...a} key={idx} />)}
+            <div className="SWindowWrapper">
+                {data.map((a, idx) => 
+                    <>
+                        <SlidableWindow {...a} key={idx} />
+                        {idx !== data.length-1 && <div key={idx + "1"} className="WindowSeparator" />}
+                    </>
+                )}
             </div>
             <p> Dra i gardinene for å justere dem</p>
         </div>
     );
 };
 
-export default WindowWrapper;
+export default SWindowWrapper;

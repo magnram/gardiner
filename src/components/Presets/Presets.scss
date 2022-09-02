@@ -9,6 +9,8 @@
     > .WindowWrapper {
         width: 92vw;
         height: 15vh;
+        display: flex;
+        justify-content: space-between;
 
         > .WindowTemp {
             max-width: 350px;
@@ -17,6 +19,7 @@
             > .Window > .frameLayer {
                 background-image: url("../../media/small_window.svg");
                 background-size: cover;
+                background-color: lightblue;
             }
         }
     }

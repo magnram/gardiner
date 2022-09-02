@@ -13,6 +13,7 @@ root.render(
 );
 
 export const getBaseUrl = () => {
+  console.log();
   let url;
   switch(process.env.NODE_ENV) {
     case 'production':
@@ -20,7 +21,7 @@ export const getBaseUrl = () => {
       break;
     case 'development':
     default:
-      url = 'http://localhost:8080';
+      url = window.location.href.replace(":3000/", ":8080");
   }
 
   return url;

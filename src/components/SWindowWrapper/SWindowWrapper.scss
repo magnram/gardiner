@@ -1,0 +1,39 @@
+.SWindowWrapper {
+    display: flex;
+    justify-content: space-between;
+    background-color: lightblue;
+    height: 37vh;
+
+    > .WindowSeparator {
+        width: 2.5vw;
+        background-color: #9C9C9C;
+    }
+
+    > .SlidableWindow {
+    }
+}
+
+.Windows {
+    padding-top: 16vh;
+    margin: 0 4vw;
+    
+    > p {
+        color: lightgray;
+        font-weight: 300;
+        margin: 0;
+        margin-top: 10px;
+        text-align: left;
+    }
+}
+
+@media (min-width: 768px) {
+    .SWindowWrapper {
+        > .WindowSeparator {
+            width: 10%;
+        }
+        > .SlidableWindow {
+            width: 350px;
+        }
+    }
+    
+}

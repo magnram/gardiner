@@ -1,7 +1,6 @@
 
 import { useEffect } from "react";
-import WindowWrapper from "./components/WindowWrapper/WindowWrapper";
-import WindowTemp from "./components/WindowTemp/WindowTemp";
+import SWindowWrapper from "./components/SWindowWrapper/SWindowWrapper";
 import "./App.scss";
 import Presets from "./components/Presets/Presets";
 import { WindowContextProvider } from "./context/window-context";
@@ -19,7 +18,7 @@ const App = () => {
   return (
   <div className="App">
     <WindowContextProvider>
-      <WindowWrapper />
+      <SWindowWrapper />
       <Presets />
     </WindowContextProvider>
   </div>

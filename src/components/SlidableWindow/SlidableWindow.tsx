@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { Slider } from '@mui/material';import "./SlidableWindow.scss"
 import WindowTemp from "../WindowTemp/WindowTemp";
@@ -21,7 +22,7 @@ const SlidableWindow = ({id, pos1, pos1Destination, pos2, pos2Destination}: Prop
     // This useEffect updates the initial values of the global state to match the backend
     useEffect(() => {
         dispatchWindow({type: "setWindowState", payload: {window: {pos1Destination, pos2Destination}, id} });
-    }, [])
+    }, [dispatchWindow, id, pos1Destination, pos2Destination]);
 
     const val: number[] = Object.keys(windowState).length ? Object.values(windowState[id]) : []
     
@@ -29,7 +30,6 @@ const SlidableWindow = ({id, pos1, pos1Destination, pos2, pos2Destination}: Prop
 
     // This useEffect updates `actual1` and `actual1`, should simulate movement in real life
     useEffect(() => {   
-        
         const val1 = Math.max(val[0], val[1]);
         const val2 = Math.min(val[0], val[1]);
 
@@ -45,7 +45,7 @@ const SlidableWindow = ({id, pos1, pos1Destination, pos2, pos2Destination}: Prop
         if (val2 > actual2) setTimeout(() => {
             if (val2 > actual2) setActual2(Math.round((actual2+0.1)*10) / 10);
         }, 10)
-    }, [windowState, actual1, actual2]);
+    }, [windowState, actual1, actual2, val]);
 
     const updateOne = async (window: WindowState) => {
         fetch(`${getBaseUrl()}/updateOne`, {

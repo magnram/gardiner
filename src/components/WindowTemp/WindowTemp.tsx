@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Window from "../Window/Window";
 import "./WindowTemp.scss"
 
