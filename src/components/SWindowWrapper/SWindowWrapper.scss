@@ -1,6 +1,10 @@
 .SWindowWrapper {
     display: flex;
     justify-content: space-between;
+    background-image: url("https://www.yr.no/webcams/1/2000/enuh/3.jpg");
+    background-repeat: no-repeat;
+    background-position: bottom 20% center;
+    background-size: cover;
     background-color: lightblue;
     height: 37vh;
 
@@ -29,7 +33,7 @@
 @media (min-width: 768px) {
     .SWindowWrapper {
         > .WindowSeparator {
-            width: 10%;
+            width: 17%;
         }
         > .SlidableWindow {
             width: 350px;
