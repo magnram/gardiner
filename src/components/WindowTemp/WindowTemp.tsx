@@ -12,7 +12,7 @@ interface Props {
 const WindowTemp = ({ pos1, pos2, weather, onClick, children, opacity }: Props) => {
     return (
         <div className="WindowTemp" onClick={onClick}>
-            <Window weather={weather}/>
+            <Window />
             <div className="ActualBlindPosition" style={{
                 top: `${100-pos1}%`, height: `${(pos1 - pos2).toString()}%`,
                 opacity: `${opacity ? opacity : 30}%`

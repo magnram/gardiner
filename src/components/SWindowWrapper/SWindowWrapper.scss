@@ -7,13 +7,24 @@
     background-size: cover;
     background-color: lightblue;
     height: 37vh;
+    overflow: hidden;
+    position: relative;
 
     > .WindowSeparator {
         width: 2.5vw;
         background-color: #9C9C9C;
+        z-index: 20;
+    }
+
+    > img {
+        position:absolute;
+        width: 70px;
+        top: 2%;
+        transform: translateX(-50%);
     }
 
     > .SlidableWindow {
+        z-index: 10;
     }
 }
 
