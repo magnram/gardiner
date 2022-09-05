@@ -45,8 +45,8 @@ export const getSunPositionPerWindow = (
     date: Date, 
     lat: number, 
     lng: number,
-    viewAngleInDeg: number = 45,
-    windowDirection: number = 145//105.1
+    viewAngleInDeg: number = 70,
+    windowDirection: number = 105.1
 ): number | null => {
     const sunPos = getSunPosition(date, lat, lng);
     const sunPosInWindow = (sunPos.azimuth - windowDirection);
