@@ -66,7 +66,7 @@ const SWindowWrapper = () => {
                 )}
                 <img className="sun" src={yrData?.symbol_url} style={{left: sunPositionInPercent ? `${(sunPositionInPercent*100)}%` : "-50%"}}></img>
             </div>
-            <p> Dra i gardinene for å justere dem</p>
+            <p> Dra i gardinene for å justere dem!</p>
         </div>
     );
 };
