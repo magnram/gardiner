@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+    frontend:
+        build: .
+        image: "magnusramm/garduino:latest"
+        ports:
+            - "3000:3000"
+        depends_on:
+            - backend
+    backend:
+        build: ../gardiner_backend
+        image: "magnusramm/garduino_backend:latest"
+        ports:
+            - "8080:8080"
+        

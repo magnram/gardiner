@@ -1,0 +1,23 @@
+# Frontend
+build: sudo docker build -t magnusramm/garduino:latest . 
+run: docker run -d -p 3000:3000 magnusramm/garduino:latest
+push: docker push magnusramm/garduino:latest
+pull: docker pull magnusramm/garduino:latest
+
+
+# Backend
+before: ./mvnw package && java -jar target/gardiner_backend-0.0.1-SNAPSHOT.jar
+build: sudo docker build -t magnusramm/garduino_backend:latest . 
+run: docker run -d -p 8080:8080 magnusramm/garduino_backend:latest  
+push: docker push magnusramm/garduino_backend:latest
+pull: docker pull magnusramm/garduino_backend:latest
+
+# compose
+build: sudo docker-compose build 
+run: docker-compose -d
+push: docker-compose push
+#run: docker-compose -f docker-compose.yml up -d frontend backend
+
+pull_and_run: 
+docker pull magnusramm/garduino_backend:latest && docker pull magnusramm/garduino:latest && docker run -d -p 3000:3000 magnusramm/garduino:latest && docker run -d -p 8080:8080 magnusramm/garduino_backend:latest
+
