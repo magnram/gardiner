@@ -1,7 +1,11 @@
 version: "3.8"
 services:
     frontend:
-        build: .
+        build:
+            context: .
+            args:
+                REACT_APP_BACKEND_URL: ${BACKEND_URL}
+
         image: "magnusramm/garduino:latest"
         ports:
             - "3000:3000"
