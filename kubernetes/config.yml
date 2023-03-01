@@ -1,0 +1,258 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: garduino-deployment
+  managedFields:
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        "f:metadata":
+          "f:labels":
+            .: {}
+            "f:app": {}
+        "f:spec":
+          "f:progressDeadlineSeconds": {}
+          "f:replicas": {}
+          "f:revisionHistoryLimit": {}
+          "f:selector": {}
+          "f:strategy":
+            "f:rollingUpdate":
+              .: {}
+              "f:maxSurge": {}
+              "f:maxUnavailable": {}
+            "f:type": {}
+          "f:template":
+            "f:metadata":
+              "f:labels":
+                .: {}
+                "f:app": {}
+            "f:spec":
+              "f:containers":
+                'k:{"name":"garduino-sha256-1"}':
+                  .: {}
+                  "f:env":
+                    .: {}
+                    'k:{"name":"NODE_ENV"}':
+                      .: {}
+                      "f:name": {}
+                      "f:value": {}
+                  "f:image": {}
+                  "f:imagePullPolicy": {}
+                  "f:name": {}
+                  "f:resources": {}
+                  "f:terminationMessagePath": {}
+                  "f:terminationMessagePolicy": {}
+              "f:dnsPolicy": {}
+              "f:restartPolicy": {}
+              "f:schedulerName": {}
+              "f:securityContext": {}
+              "f:terminationGracePeriodSeconds": {}
+      manager: GoogleCloudConsole
+      operation: Update
+      time: "2023-03-01T11:23:23Z"
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        "f:metadata":
+          "f:annotations":
+            .: {}
+            "f:deployment.kubernetes.io/revision": {}
+        "f:status":
+          "f:availableReplicas": {}
+          "f:conditions":
+            .: {}
+            'k:{"type":"Available"}':
+              .: {}
+              "f:lastTransitionTime": {}
+              "f:lastUpdateTime": {}
+              "f:message": {}
+              "f:reason": {}
+              "f:status": {}
+              "f:type": {}
+            'k:{"type":"Progressing"}':
+              .: {}
+              "f:lastTransitionTime": {}
+              "f:lastUpdateTime": {}
+              "f:message": {}
+              "f:reason": {}
+              "f:status": {}
+              "f:type": {}
+          "f:observedGeneration": {}
+          "f:readyReplicas": {}
+          "f:replicas": {}
+          "f:updatedReplicas": {}
+      manager: kube-controller-manager
+      operation: Update
+      subresource: status
+      time: "2023-03-01T11:39:22Z"
+  name: garduino-deployment
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: garduino-deployment
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: garduino-deployment
+    spec:
+      containers:
+        - env:
+            - name: NODE_ENV
+              value: production
+          image: gcr.io/garduino-project/github.com/magnram/gardiner
+          imagePullPolicy: IfNotPresent
+          name: garduino-sha256-1
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  labels:
+    app: garduino-deployment
+  managedFields:
+    - apiVersion: autoscaling/v2
+      fieldsType: FieldsV1
+      fieldsV1:
+        "f:metadata":
+          "f:labels":
+            .: {}
+            "f:app": {}
+        "f:spec":
+          "f:maxReplicas": {}
+          "f:metrics": {}
+          "f:minReplicas": {}
+          "f:scaleTargetRef":
+            "f:apiVersion": {}
+            "f:kind": {}
+            "f:name": {}
+      manager: GoogleCloudConsole
+      operation: Update
+      time: "2023-03-01T08:08:22Z"
+    - apiVersion: autoscaling/v2
+      fieldsType: FieldsV1
+      fieldsV1:
+        "f:status":
+          "f:conditions":
+            .: {}
+            'k:{"type":"AbleToScale"}':
+              .: {}
+              "f:lastTransitionTime": {}
+              "f:message": {}
+              "f:reason": {}
+              "f:status": {}
+              "f:type": {}
+            'k:{"type":"ScalingActive"}':
+              .: {}
+              "f:lastTransitionTime": {}
+              "f:message": {}
+              "f:reason": {}
+              "f:status": {}
+              "f:type": {}
+            'k:{"type":"ScalingLimited"}':
+              .: {}
+              "f:lastTransitionTime": {}
+              "f:message": {}
+              "f:reason": {}
+              "f:status": {}
+              "f:type": {}
+          "f:currentMetrics": {}
+          "f:currentReplicas": {}
+          "f:desiredReplicas": {}
+      manager: vpa-recommender
+      operation: Update
+      subresource: status
+      time: "2023-03-01T08:08:38Z"
+  name: garduino-deployment-hpa-lx6x
+  namespace: default
+spec:
+  maxReplicas: 5
+  metrics:
+    - resource:
+        name: cpu
+        target:
+          averageUtilization: 80
+          type: Utilization
+      type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: garduino-deployment
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+  finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    app: garduino-deployment
+  managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        "f:metadata":
+          "f:finalizers":
+            .: {}
+            'v:"service.kubernetes.io/load-balancer-cleanup"': {}
+        "f:status":
+          "f:loadBalancer":
+            "f:ingress": {}
+      manager: kube-controller-manager
+      operation: Update
+      subresource: status
+      time: "2023-03-01T08:09:52Z"
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        "f:metadata":
+          "f:labels":
+            .: {}
+            "f:app": {}
+        "f:spec":
+          "f:allocateLoadBalancerNodePorts": {}
+          "f:externalTrafficPolicy": {}
+          "f:internalTrafficPolicy": {}
+          "f:ports":
+            .: {}
+            'k:{"port":80,"protocol":"TCP"}':
+              .: {}
+              "f:nodePort": {}
+              "f:port": {}
+              "f:protocol": {}
+              "f:targetPort": {}
+          "f:selector": {}
+          "f:sessionAffinity": {}
+          "f:type": {}
+      manager: GoogleCloudConsole
+      operation: Update
+      time: "2023-03-01T09:33:58Z"
+  name: garduino-deployment-service
+  namespace: default
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.68.4.237
+  clusterIPs:
+    - 10.68.4.237
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+    - nodePort: 32340
+      port: 80
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: garduino-deployment
+  sessionAffinity: None
+  type: LoadBalancer
