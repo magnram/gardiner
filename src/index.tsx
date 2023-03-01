@@ -13,10 +13,10 @@ root.render(
 );
 
 export const getBaseUrl = () => {
-  console.log("ENVIRONMENT " + process.env.NODE_ENV);
+  console.log("ENVIRONMENT " + process.env.BACKEND_URL);
   let url;
-  if(process.env.NODE_ENV) {
-    url = process.env.NODE_ENV
+  if(process.env.BACKEND_URL) {
+    url = process.env.BACKEND_URL
   } else {
     url = window.location.href.replace(":3000/", ":8080");
   }
