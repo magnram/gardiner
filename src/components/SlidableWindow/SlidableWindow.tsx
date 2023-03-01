@@ -60,7 +60,25 @@ const SlidableWindow = ({id, pos1, pos1Destination, pos2, pos2Destination}: Prop
         })
     }
 
+    // Needed because of bug in material-ui slider causing it to bounce around
+    const iOS =() => {
+        return [
+          'iPad Simulator',
+          'iPhone Simulator',
+          'iPod Simulator',
+          'iPad',
+          'iPhone',
+          'iPod'
+        ].includes(navigator.platform)
+        // iPad on iOS 13 detection
+        || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+    }
+    const isIOS = iOS();
+
     const handleChange = (event: Event, newValue: number | number[]) => {
+        if (isIOS && event.type === 'mousedown') {
+            return;
+        }
         setValue(newValue as number[]);
     };
     const handleChangeCommitted = () => {

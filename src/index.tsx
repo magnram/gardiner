@@ -13,16 +13,12 @@ root.render(
 );
 
 export const getBaseUrl = () => {
-  console.log();
+  console.log("ENVIRONMENT " + process.env.NODE_ENV);
   let url;
-  switch(process.env.NODE_ENV) {
-    case 'production':
-      url = 'https://gardiner-backend.herokuapp.com';
-      break;
-    case 'development':
-    default:
-      url = window.location.href.replace(":3000/", ":8080");
+  if(process.env.NODE_ENV) {
+    url = process.env.NODE_ENV
+  } else {
+    url = window.location.href.replace(":3000/", ":8080");
   }
-
   return url;
 }
